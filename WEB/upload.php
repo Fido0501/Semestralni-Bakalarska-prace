@@ -36,26 +36,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html lang="cs">
-<head>
-    <meta charset="UTF-8">
-    <title>Nahrát 3D model</title>
-</head>
-<body>
-    <h1>Nahrát nový 3D model</h1>
+    <head>
+        <meta charset="UTF-8">
+        <title>Nahrát 3D model</title>
+    </head>
+    <body>
+        <h1>Nahrát nový 3D model</h1>
 
-    <form action="upload.php" method="POST" enctype="multipart/form-data">
-        <label>Název modelu:</label><br>
-        <input type="text" name="title" required><br><br>
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
+            <label>Název modelu:</label><br>
+            <input type="text" name="title" required><br><br>
 
-        <label>Soubor modelu (.glb, .gltf, .obj, .fbx):</label><br>
-        <input type="file" name="model" accept=".glb,.gltf,.obj,.fbx" required><br><br>
+            <label>Soubor modelu (.glb, .gltf, .obj, .fbx):</label><br>
+            <input type="file" name="model" accept=".glb,.gltf,.obj,.fbx" required><br><br>
 
-        <label>Náhledový obrázek (.jpg, .png):</label><br>
-        <input type="file" name="thumbnail" accept="image/*" required><br><br>
+            <label>Náhledový obrázek (.jpg, .png):</label><br>
+            <input type="file" name="thumbnail" accept="image/*" required><br><br>
 
-        <button type="submit">Nahrát</button>
-    </form>
+            <button type="submit">Nahrát</button>
+        </form>
 
-    <p><a href="index.php">← Zpět na galerii</a></p>
-</body>
+        <p><a href="index.php">← Zpět na galerii</a></p>
+    </body>
 </html>

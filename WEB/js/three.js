@@ -20,9 +20,6 @@ const container = document.getElementById("canvasContainer");
 container.appendChild(renderer.domElement);
 
 
-
-
-
 // === OrbitControls ===
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;

@@ -29,15 +29,15 @@
     border-radius: 8px;
     padding: 0.5rem;
     text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .card img {
-    max-width:100%;
-    max-height:100%;
+    width:300px;
+    height:300px;
     aspect-ratio: 1/1;
     border-radius: 5px;
-    border: 1px solid #000000;
+    border: 1px solid #929292;
 }
 
 .card-name {
@@ -48,11 +48,13 @@
     font-weight: 400;
 }
 
-/*.card model-viewer {
-    width: auto;
-    height: auto;
-    border-radius: 4px;
-    background: #777777;
+.card model-viewer {
+    aspect-ratio: 1/1;
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+    border: 1px solid #929292;
+    background: #f4f4f4;
 }
 
 .card p {
@@ -60,7 +62,23 @@
     font-weight: bold;
 }
 
-.card a.delete {
+.delete {
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 1.1rem;
+    transition: .3s;
+    color: #000;
+}
+
+.delete:hover {
+    scale: 1.1;
+    color: var(--pri-color);
+    background-color: var(--pri-color);
+    color: #fff;
+}
+
+/*.card a.delete {
     color: red;
     font-size: 0.9rem;
     display: block;
@@ -82,9 +100,22 @@
 
 
 /* DETAIL */
-model-viewer {
+.mw model-viewer {
     width: 600px;
     height: 400px;
     margin: 2rem auto;
-    background-color: #f8f8f8;
+    background-color: #4f4f4f;
+}
+
+.thumb {
+        display: none;
+}
+
+/* EDIT */
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 500px;
+    gap: 1rem;
 }

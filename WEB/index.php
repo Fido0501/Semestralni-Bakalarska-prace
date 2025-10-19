@@ -25,7 +25,7 @@
         <!-- Main -->
         <section class="main">
             <h1>Galerie 3D objektů</h1>
-            <a href="upload.php" class="link button">➕ Přidat nový model</a>
+            <a href="upload.php" class="button">Přidat nový model</a>
 
             <div id="cards-container">
                 <?php
@@ -41,28 +41,26 @@
                         echo '<img src="'.$row['thumbnail_path'].'" alt="náhled">';
                         echo '<div class="card-name">'.htmlspecialchars($row['title']).'</div>';
                         echo '</a>';
-                        echo '<div><a class="link" href="delete.php?id='.$row['id'].'" onclick="return confirm(\'Opravdu smazat?\')">🗑️ Odstranit</a></div>';
+                        echo '<div><a class="button delete" href="delete.php?id='.$row['id'].'" onclick="return confirm(\'Opravdu smazat?\')">🗑️ Odstranit</a></div>';
                         echo '</div>';
                     }
                     $result->free();
 
-                /* Moznost zobrazení s model-viewer
+                /* Moznost zobrazení s model-viewer*/
                     require "db.php";
                     $result = $mysqli->query("SELECT * FROM cards ORDER BY id DESC");
                     if ($result) {
                         while ($row = $result->fetch_assoc()) {
                             echo '<div class="card">';
-                            // Kliknutí vede na detail
                             echo '<model-viewer src="'.$row['model_path'].'" alt="Preview" camera-controls auto-rotate></model-viewer>';
                             echo '<a href="detail.php?id='.$row['id'].'">';
-                            echo '<p>'.htmlspecialchars($row['title']).'</p>';
+                            echo '<div class="card-name">'.htmlspecialchars($row['title']).'</div>';
                             echo '</a>';
-                            // Mazání
-                            echo '<a class="delete" href="delete.php?id='.$row['id'].'" onclick="return confirm(\'Opravdu smazat?\')">🗑️ Odstranit</a>';
+                            echo '<div><a class="button delete" href="delete.php?id='.$row['id'].'" onclick="return confirm(\'Opravdu smazat?\')">🗑️ Odstranit</a></div>';
                             echo '</div>';
                         }
                         $result->free();
-                    }*/
+                    }
                 ?>
             </div>
         </section>
@@ -76,7 +74,7 @@
         </footer>
 
         <!-- scripts -->
-         <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+        <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
         <script src="./js/nav.js"></script>
         <script src="./js/loading.js"></script>
         <script src="./js/three.js" type="module"></script>

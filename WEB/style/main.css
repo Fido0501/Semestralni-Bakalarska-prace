@@ -61,11 +61,13 @@ h3 {
     padding: .5rem 1.5rem;
     border-radius: 50px;
     border: var(--pri-color) solid 1px;
+    transition: .3s;
 }
 
 .button:hover {
     background-color: var(--pri-color);
     color: #fff;
+    scale: 1.1;
 }
 
 .link {
