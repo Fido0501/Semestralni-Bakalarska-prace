@@ -46,7 +46,7 @@
                     }
                     $result->free();
 
-                /* Moznost zobrazení s model-viewer*/
+                /* Moznost zobrazení s model-viewer
                     require "db.php";
                     $result = $mysqli->query("SELECT * FROM cards ORDER BY id DESC");
                     if ($result) {
@@ -60,7 +60,7 @@
                             echo '</div>';
                         }
                         $result->free();
-                    }
+                    }*/
                 ?>
             </div>
         </section>

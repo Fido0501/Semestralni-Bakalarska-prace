@@ -62,12 +62,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <form method="POST" enctype="multipart/form-data">
             <label>Název modelu:</label><br>
             <input type="text" name="title" value="<?= htmlspecialchars($row['title']) ?>" required><br><br>
+            <label>Změnit 3D model (nepovinné):</label><br>
+            <input type="file" name="model" accept=".glb,.gltf"><br><br>
 
             <label>Změnit obrázek (nepovinné):</label><br>
             <input type="file" name="thumbnail" accept="image/*"><br><br>
-
-            <label>Změnit 3D model (nepovinné):</label><br>
-            <input type="file" name="model" accept=".glb,.gltf"><br><br>
 
             <button type="submit">Uložit změny</button>
         </form>

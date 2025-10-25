@@ -1,6 +1,16 @@
 <?php
 require "db.php";
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
+// zkontroluj, jestli přišel soubor
+if ($_SERVER["REQUEST_METHOD"] === "POST" && empty($_FILES)) {
+    die("<b>❌ Soubor se nepodařilo nahrát.</b><br>
+    Možné důvody:<br>
+    - příliš velký soubor<br>
+    - překročen post_max_size nebo upload_max_filesize<br>
+    - selhal upload na straně serveru");
+}
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $title = $_POST["title"];
 
