@@ -34,6 +34,7 @@
         <link rel="stylesheet" href="style/main.css">
         <link rel="stylesheet" href="style/style.css">
         <link rel="stylesheet" href="style/partials.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=chevron_backward,edit" />
 
         <!-- title -->
         <title><?= htmlspecialchars($model['title']) ?></title>
@@ -41,32 +42,27 @@
     <body>
         <header>
             <?php
-                include "partials/header.php";
+                /*include "partials/header.php";*/
             ?>
         </header>
         
         <section class="main">
             <h1><?= htmlspecialchars($model['title']) ?></h1>
-            <?php if (!empty($row['thumbnail_path'])): ?>
-                <img class="thumb" src="<?= htmlspecialchars($row['thumbnail_path']) ?>" alt="Náhled">
-            <?php else: ?>
-                <p><em>Žádný obrázek</em></p>
-            <?php endif; ?>
-
+            
             <div class="mw">
                 <model-viewer src="<?= $model['model_path'] ?>"
                             alt="3D model"
                             camera-controls
-                            auto-rotate
                             environment-image="neutral">
                 </model-viewer>
             </div>
 
             <div class="actions">
-                <a href="edit.php?id=<?= $row['id'] ?>">Upravit</a>
+                <a href="index.php" class="button"><span class="material-symbols-outlined">
+                chevron_backward</span>Zpět na galerii</a>
+                <a href="edit.php?id=<?= $row['id'] ?>" class="button"><span class="material-symbols-outlined">
+                edit</span>Upravit</a>
             </div>
-
-            <p><a href="index.php">← Zpět na galerii</a></p>
         </section>
 
         <footer>

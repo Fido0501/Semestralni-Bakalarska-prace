@@ -1,16 +1,6 @@
 <?php
 require "db.php";
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 
-// zkontroluj, jestli přišel soubor
-if ($_SERVER["REQUEST_METHOD"] === "POST" && empty($_FILES)) {
-    die("<b>❌ Soubor se nepodařilo nahrát.</b><br>
-    Možné důvody:<br>
-    - příliš velký soubor<br>
-    - překročen post_max_size nebo upload_max_filesize<br>
-    - selhal upload na straně serveru");
-}
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $title = $_POST["title"];
 
@@ -23,13 +13,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // ===== MODEL =====
     $modelFile = $_FILES["model"];
     $modelName = time() . "_" . basename($modelFile["name"]);
-    $modelPath = "uploads/" . $modelName;
+    $modelPath = $targetDir . $modelName;
     move_uploaded_file($modelFile["tmp_name"], $modelPath);
 
     // ===== THUMBNAIL =====
     $thumbFile = $_FILES["thumbnail"];
     $thumbName = time() . "_" . basename($thumbFile["name"]);
-    $thumbPath = "uploads/" . $thumbName;
+    $thumbPath = $targetDir . $thumbName;
     move_uploaded_file($thumbFile["tmp_name"], $thumbPath);
 
     // ===== ULOŽENÍ DO DB =====
@@ -47,25 +37,40 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <!DOCTYPE html>
 <html lang="cs">
     <head>
+        <!-- meta -->
         <meta charset="UTF-8">
-        <title>Nahrát 3D model</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- link -->
+        <link rel="stylesheet" href="style/main.css">
+        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="style/partials.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=chevron_backward,upload" />
+
+        <!-- title -->
+        <title>Přidat 3D model</title>
     </head>
     <body>
-        <h1>Nahrát nový 3D model</h1>
+        <section class="main main-form">
+            <h1>Nahrát nový 3D model</h1>
 
-        <form action="upload.php" method="POST" enctype="multipart/form-data">
-            <label>Název modelu:</label><br>
-            <input type="text" name="title" required><br><br>
+            <form action="upload.php" method="POST" enctype="multipart/form-data">
+                <input class="text_input" type="text" name="title" placeholder="Zadej název modelu" maxlength="20" required>
 
-            <label>Soubor modelu (.glb, .gltf, .obj, .fbx):</label><br>
-            <input type="file" name="model" accept=".glb,.gltf,.obj,.fbx" required><br><br>
+                <label class="button-label" for="upload3d">Soubor modelu (.glb, .gltf, .obj, .fbx):</label>
+                <input id="upload3d"type="file" name="model" accept=".glb,.gltf,.obj,.fbx" required>
 
-            <label>Náhledový obrázek (.jpg, .png):</label><br>
-            <input type="file" name="thumbnail" accept="image/*" required><br><br>
+                <label class="button-label" for="upload">Náhledový obrázek (.jpg, .png):</label>
+                <input id="upload" type="file" name="thumbnail" accept="image/*" required>
 
-            <button type="submit">Nahrát</button>
-        </form>
 
-        <p><a href="index.php">← Zpět na galerii</a></p>
+                <div class="actions">
+                    <a href="index.php" class="button"><span class="material-symbols-outlined">chevron_backward</span>Zpět na galerii</a>
+                    <button type="submit" class="button"><span class="material-symbols-outlined">upload</span>Nahrát</button>
+                </div>
+                
+            </form>
+        </section>
     </body>
 </html>

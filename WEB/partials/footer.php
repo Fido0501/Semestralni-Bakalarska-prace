@@ -1,3 +1,4 @@
 <div class="footer">
-    <div>Bakalářská práce 2025</div>
+    <div>Seminární práce 2025/26</div>
+    <div>Filip Křivánek</div>
 </div>

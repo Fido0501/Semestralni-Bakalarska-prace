@@ -13,48 +13,38 @@
     align-items: center;
     flex-wrap: wrap;
     width: 80%;
-    gap: 1rem;
+    gap: 2rem;
     margin-top: 1rem;
+    margin-bottom: 5rem;
 }
 
 .card {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
     width: 300px;
-    height: 400px;
-    border: 1px solid #c7c7c7;
-    background-color: rgb(238, 237, 237);
-    border-radius: 8px;
-    padding: 0.5rem;
+    height: auto;
+    background-color: rgb(255, 255, 255);
     text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    transition: .2s;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;;
+}
+
+.card:hover {
+    transform: translateY(-2px);
 }
 
 .card img {
-    width:300px;
+    width:100%;
     height:300px;
     aspect-ratio: 1/1;
-    border-radius: 5px;
-    border: 1px solid #929292;
 }
 
 .card-name {
     margin-top: .5rem;
     margin-bottom: .5rem;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     color: var(--pri-color);
     font-weight: 400;
-}
-
-.card model-viewer {
-    aspect-ratio: 1/1;
-    width: 300px;
-    height: 300px;
-    border-radius: 5px;
-    border: 1px solid #929292;
-    background: #f4f4f4;
 }
 
 .card p {
@@ -66,43 +56,36 @@
     cursor: pointer;
     text-decoration: none;
     font-weight: 300;
-    font-size: 1.1rem;
+    font-size: .9rem;
     transition: .3s;
     color: #000;
+    text-align: right;
+    padding: .5rem;
+}
+
+.edit {
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: .9rem;
+    transition: .3s;
+    color: #000;
+    text-align: right;
+    padding: .5rem;
 }
 
 .delete:hover {
-    scale: 1.1;
-    color: var(--pri-color);
-    background-color: var(--pri-color);
-    color: #fff;
-}
-
-/*.card a.delete {
     color: red;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.3rem;
-    text-decoration: none;
 }
 
-/*
-#canvasContainer {
-
+.edit:hover {
+    color: var(--pri-color);
 }
-
-#Canvas { 
-    border: 5px solid black;
-    display: block;
-    border-radius: 10px;
-    box-shadow: 5px 5px 20px rgba(0,0,0,0.5);
-}*/
-
 
 /* DETAIL */
 .mw model-viewer {
-    width: 600px;
-    height: 400px;
+    width: 800px;
+    height: 600px;
     margin: 2rem auto;
     background-color: #4f4f4f;
 }
@@ -111,7 +94,27 @@
         display: none;
 }
 
-/* EDIT */
+@media screen and (max-width: 820px) {
+    .mw model-viewer {
+        width: 450px;
+        height: 500px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .mw model-viewer {
+        width: 300px;
+        height: 500px;
+    }
+}
+
+
+/* UPLOAD AND EDIT */
+
+section.main.main-form {
+    height: 60vh;
+}
+
 form {
     display: flex;
     justify-content: center;
@@ -119,3 +122,34 @@ form {
     width: 500px;
     gap: 1rem;
 }
+
+.text_input {
+    width: 100%;
+    font-size: 2rem;
+    padding: 10px 0;
+    font-size: 1.5rem;
+    color: #000;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #0c0c0c;
+    outline: none;
+    background: transparent;
+    padding: relative;
+}
+
+.button-label {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    border: 1px solid var(--pri-color);
+    color: var(--pri-color);
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#upload, #upload3d {
+    align-self: center;
+}
+

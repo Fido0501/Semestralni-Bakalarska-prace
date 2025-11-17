@@ -10,22 +10,23 @@
         <link rel="stylesheet" href="style/main.css">
         <link rel="stylesheet" href="style/style.css">
         <link rel="stylesheet" href="style/partials.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add,delete,edit" />
 
         <!-- title -->
         <title>3D modely</title>
     </head>
     <body>
-        <!-- Header -->
+        <!-- Header
         <header>
             <?php
-                include "partials/header.php";
+              /*  include "partials/header.php";*/
             ?>
-        </header>
+        </header>-->
 
         <!-- Main -->
         <section class="main">
             <h1>Galerie 3D objektů</h1>
-            <a href="upload.php" class="button">Přidat nový model</a>
+            <a href="upload.php" class="button"><span class="material-symbols-outlined">add</span>Přidat nový model</a>
 
             <div id="cards-container">
                 <?php
@@ -37,30 +38,15 @@
 
                     while ($row = $result->fetch_assoc()) {
                         echo '<div class="card">';
-                        echo '<a href="detail.php?id='.$row['id'].'">';
-                        echo '<img src="'.$row['thumbnail_path'].'" alt="náhled">';
-                        echo '<div class="card-name">'.htmlspecialchars($row['title']).'</div>';
-                        echo '</a>';
-                        echo '<div><a class="button delete" href="delete.php?id='.$row['id'].'" onclick="return confirm(\'Opravdu smazat?\')">🗑️ Odstranit</a></div>';
+                            echo '<a href="detail.php?id='.$row['id'].'">';
+                                echo '<img src="'.$row['thumbnail_path'].'" alt="náhled">';
+                                echo '<div class="card-name">'.htmlspecialchars($row['title']).'</div>';
+                            echo '</a>';
+                        echo '<div class=actions><a class="delete" href="delete.php?id='.$row['id'].'" onclick="return confirm(\'Opravdu smazat?\')"><span class="material-symbols-outlined">delete</span></a>';
+                        echo '<a class="edit" href="edit.php?id='.$row['id'].'"><span class="material-symbols-outlined">edit</span></a></div>';
                         echo '</div>';
                     }
                     $result->free();
-
-                /* Moznost zobrazení s model-viewer
-                    require "db.php";
-                    $result = $mysqli->query("SELECT * FROM cards ORDER BY id DESC");
-                    if ($result) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo '<div class="card">';
-                            echo '<model-viewer src="'.$row['model_path'].'" alt="Preview" camera-controls auto-rotate></model-viewer>';
-                            echo '<a href="detail.php?id='.$row['id'].'">';
-                            echo '<div class="card-name">'.htmlspecialchars($row['title']).'</div>';
-                            echo '</a>';
-                            echo '<div><a class="button delete" href="delete.php?id='.$row['id'].'" onclick="return confirm(\'Opravdu smazat?\')">🗑️ Odstranit</a></div>';
-                            echo '</div>';
-                        }
-                        $result->free();
-                    }*/
                 ?>
             </div>
         </section>
