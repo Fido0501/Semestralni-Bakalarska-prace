@@ -16,13 +16,6 @@
         <title>3D modely</title>
     </head>
     <body>
-        <!-- Header
-        <header>
-            <?php
-              /*  include "partials/header.php";*/
-            ?>
-        </header>-->
-
         <!-- Main -->
         <section class="main">
             <h1>Galerie 3D objektů</h1>
