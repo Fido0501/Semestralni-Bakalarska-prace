@@ -33,7 +33,7 @@
                         echo '<div class="card">';
                             echo '<a href="detail.php?id='.$row['id'].'">';
                                 echo '<img src="'.$row['thumbnail_path'].'" alt="náhled">';
-                                echo '<div class="card-name">'.htmlspecialchars($row['title']).'</div>';
+                                echo '<div class="card-name">'.$row['title'].'</div>';
                             echo '</a>';
                         echo '<div class=actions><a class="delete" href="delete.php?id='.$row['id'].'" onclick="return confirm(\'Opravdu smazat?\')"><span class="material-symbols-outlined">delete</span></a>';
                         echo '<a class="edit" href="edit.php?id='.$row['id'].'"><span class="material-symbols-outlined">edit</span></a></div>';
