@@ -1,23 +1,24 @@
 <?php
 require "db.php";
 
+// Pokud je odeslán formulář metodou POST, zpracovat nahrání
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $title = $_POST["title"];
+    $title = $_POST["title"]; // název modelu z formuláře
 
-    // složka pro nahrávání
+    // složka pro nahrávání (pokud neexistuje, vytvoří se)
     $targetDir = "uploads/";
     if (!is_dir($targetDir)) {
         mkdir($targetDir, 0777, true);
     }
 
     // ===== MODEL =====
-    $modelFile = $_FILES["model"];
-    $modelName = time() . "_" . basename($modelFile["name"]);
-    $modelPath = $targetDir . $modelName;
-    move_uploaded_file($modelFile["tmp_name"], $modelPath);
+    $modelFile = $_FILES["model"]; // data o souboru modelu
+    $modelName = time() . "_" . basename($modelFile["name"]); // unikátní jméno
+    $modelPath = $targetDir . $modelName; // cílová cesta
+    move_uploaded_file($modelFile["tmp_name"], $modelPath); // přesun na server
 
     // ===== THUMBNAIL =====
-    $thumbFile = $_FILES["thumbnail"];
+    $thumbFile = $_FILES["thumbnail"]; // data o náhledu
     $thumbName = time() . "_" . basename($thumbFile["name"]);
     $thumbPath = $targetDir . $thumbName;
     move_uploaded_file($thumbFile["tmp_name"], $thumbPath);
@@ -28,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->execute();
     $stmt->close();
 
-    // zpět na galerii
+    // přesměrování zpět na galerii po úspěšném nahrání
     header("Location: index.php");
     exit;
 }

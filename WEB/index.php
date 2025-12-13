@@ -16,30 +16,36 @@
         <title>3D modely</title>
     </head>
     <body>
-        <!-- Main -->
         <section class="main">
             <h1>Galerie 3D objektů</h1>
             <a href="upload.php" class="button"><span class="material-symbols-outlined">add</span>Přidat nový model</a>
 
             <div id="cards-container">
                 <?php
+                    // načtení DB připojení
                     require "db.php";
+                    // získat všechny položky z tabulky cards, řazeno sestupně podle id
                     $result = $mysqli->query("SELECT * FROM cards ORDER BY id DESC");
                     if (!$result) {
                         die("Chyba v dotazu: " . $mysqli->error);
                     }
 
+                    // iterace přes všechny řádky a vykreslení karet
                     while ($row = $result->fetch_assoc()) {
                         echo '<div class="card">';
+                            // odkaz na detail s použitím id z DB
                             echo '<a href="detail.php?id='.$row['id'].'">';
+                                // náhledový obrázek - cesta z DB
                                 echo '<img src="'.$row['thumbnail_path'].'" alt="náhled">';
+                                // název modelu
                                 echo '<div class="card-name">'.$row['title'].'</div>';
                             echo '</a>';
+                        // smazat a upravit - odkazy používají id
                         echo '<div class=actions><a class="delete" href="delete.php?id='.$row['id'].'" onclick="return confirm(\'Opravdu smazat?\')"><span class="material-symbols-outlined">delete</span></a>';
                         echo '<a class="edit" href="edit.php?id='.$row['id'].'"><span class="material-symbols-outlined">edit</span></a></div>';
                         echo '</div>';
                     }
-                    $result->free();
+                    $result->free(); // uvolnění výsledku
                 ?>
             </div>
         </section>

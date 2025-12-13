@@ -1,20 +1,21 @@
 <?php
 require "db.php";
 
+// kontrola, zda je předáno id
 if (!isset($_GET['id'])) {
     die("Model nenalezen.");
 }
 
-$id = (int)$_GET['id'];
+$id = (int)$_GET['id']; // bezpečné přetypování id
 $result = $mysqli->query("SELECT * FROM cards WHERE id = $id");
 if (!$result || $result->num_rows === 0) {
     die("Model nenalezen.");
 }
 
-$row = $result->fetch_assoc();
+$row = $result->fetch_assoc(); // původní data modelu
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $title = $mysqli->real_escape_string($_POST["title"]);
+    $title = $mysqli->real_escape_string($_POST["title"]); // sanitace vstupu
 
     // složka pro nahrávání
     $targetDir = "uploads/";
@@ -33,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             unlink($modelPath);
         }
         $modelName = basename($_FILES["model"]["name"]);
-        $modelPath = $targetDir . $modelName;
+        $modelPath = $targetDir . $modelName; // nová cesta
         move_uploaded_file($_FILES["model"]["tmp_name"], $modelPath);
     }
 
@@ -48,11 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $thumbPath);
     }
 
-    // aktualizace DB
+    // aktualizace DB s novými hodnotami
     $update = $mysqli->prepare("UPDATE cards SET title=?, model_path=?, thumbnail_path=? WHERE id=?");
     $update->bind_param("sssi", $title, $modelPath, $thumbPath, $id);
     $update->execute();
 
+    // přesměrování na detail daného modelu
     header("Location: detail.php?id=$id");
     exit;
 }
